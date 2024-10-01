@@ -9,22 +9,36 @@ export interface Route {
 }
 
 class Router {
-  private routes: Route[] = [];
+  private routes: Map<string, Map<string, RouteHandler>> = new Map();
 
   public addRoute(method: string, path: string, handler: RouteHandler) {
-    this.routes.push({ method, path, handler });
+    if (!this.routes.has(method)) {
+      this.routes.set(method, new Map());
+    }
+    this.routes.get(method)!.set(path, handler);
   }
 
   public handle(req: IncomingMessage, res: ServerResponse) {
     const { url, method } = req;
-    const route = this.routes.find(route => route.path === url && route.method === method);
     
-    if (route) {
-      route.handler(req, res);
-    } else {
-      res.statusCode = 404;
-      res.end('Not Found');
+    if (!method || !url) {
+      res.statusCode = 400;
+      res.end('Bad Request');
+      return;
     }
+
+    const methodRoutes = this.routes.get(method);
+    
+    if (methodRoutes) {
+      const handler = methodRoutes.get(url);
+      if (handler) {
+        handler(req, res);
+        return;
+      }
+    }
+
+    res.statusCode = 404;
+    res.end('Not Found');
   }
 }
 
