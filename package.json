@@ -1,0 +1,35 @@
+{
+  "name": "ts-web",
+  "version": "0.1.0",
+  "private": false,
+  "author": {
+    "name": "Vinicius Cestari",
+    "email": "viniciuscestari01@gmail.com"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "coverage": "vitest --coverage"
+  },
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "@types/supertest": "^6.0.2",
+    "@vitest/coverage-v8": "^2.1.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  },
+  "dependencies": {
+    "supertest": "^7.0.0"
+  }
+}
