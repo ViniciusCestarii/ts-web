@@ -6,18 +6,11 @@
     "name": "Vinicius Cestari",
     "email": "viniciuscestari01@gmail.com"
   },
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
     "test": "vitest",
     "coverage": "vitest --coverage"
-  },
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true
   },
   "include": [
     "src/**/*"
