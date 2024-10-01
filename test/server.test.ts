@@ -3,7 +3,7 @@ import http from 'http';
 import { beforeEach, describe, expect, test } from 'vitest'
 import Server from '../src/server';
 
-describe('Custom Server Framework', () => {
+describe('Basic tests', () => {
   let app: Server;
 
   beforeEach(() => {
