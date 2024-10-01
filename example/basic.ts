@@ -12,6 +12,12 @@ app.get('/', (req, res) => {
   res.end('Hello World!');
 });
 
+app.get('/json', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  const responseData = { message: 'Hello World!' };
+  res.end(JSON.stringify(responseData));
+});
+
 app.listen(3000, () => {
   console.log('Server running at http://localhost:3000/');
 });
